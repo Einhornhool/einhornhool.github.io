@@ -1,0 +1,36 @@
+# The URL the site will be built for
+base_url = "https://lenaboeckmann.de"
+
+title = "Portfolio"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+
+[extra]
+enable_search = true
+enable_sidebar = true
+
+# Put all your custom variables here
+[extra.navbar]
+work = [
+    { url = "/", name = "Home" },
+    { url = "/work/resume", name = "Resume" },
+    { url = "/work/publications", name = "Publications" }
+]
+
+play = [
+    { url = "/", name = "Home" },
+    { url = "/blog", name = "Blog" }
+]
