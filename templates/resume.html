@@ -1,10 +1,77 @@
-{% extends "_work.html" %}
+{% extends "_base.html" %}
 
 {% block content %}
+<section class="resume">
+    <h1 class="title"> {{ section.title }}</h1>
+    <div class="cv">
+        <div class="timeline">
+            {% for page in section.pages %}
+                <div class="timeline-item">
+                    <div class="item">
+                        <h4>{{ page.title }}</h4>
+                        <p>{{ page.content | safe }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 
-<h1 class="title">
-  {{ page.title }}
-</h1>
-{{ page.content | safe }}
+        <div class="skills">
+            <h3>Skills</h3>
+            <div class="hl"></div>
+                <h4>Programming Languages</h4>
+                <div class="skill-item">
+                    <div class="it">
+                        <p>C/C++</p>
+                        <p>Python</p>
+                        <p>Java</p>
+                        <p>Erlang</p>
+                    </div>
+                </div>
 
+            <div class="hl"></div>
+            <h4>Tools</h4>
+            <div class="skill-item">
+                <div class="it">
+                    <p>VS Code</p>
+                    <p>Eclipse IDE</p>
+                    <p>Git</p>
+                    <p>GDB</p>
+                    <p>LaTeX</p>
+                    <p>Xilinx Vivado IDE</p>
+                </div>
+            </div>
+
+            <div class="hl"></div>
+            <h4>Operating Systems</h4>
+            <div class="skill-item">
+                <div class="it">
+                    <p>Linux/Embedded Linux</p>
+                    <p>RIOT OS</p>
+                    <p>MacOS</p>
+                    <p>QNX</p>
+                </div>
+            </div>
+
+            <div class="hl"></div>
+            <h4>Languages</h4>
+            <div class="skill-item">
+                <div class="it">
+                    <p>German</p>
+                    <p>English</p>
+                    <p>French</p>
+                </div>
+            </div>
+            <div class="hl"></div>
+            <h4>Other</h4>
+            <div class="skill-item">
+                <div class="it">
+                    <p>Linux CLI</p>
+                    <p>Hardware Design (VHDL)</p>
+                    <p>Electronics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 {% endblock content %}

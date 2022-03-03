@@ -1,15 +1,25 @@
-{% extends "_play.html" %}
+{% extends "_base.html" %}
 
 {% block content %}
 
-<h1 class="title">
-  {{ section.title }}
-</h1>
+<section class="blog_list">
+{% for page in paginator.pages %}
+<article class="blog_list_item">
+<a class="article_title" href="{{page.permalink}}">{{page.title}}</a>
+<p class="article_content">{{ page.summary | default(value=page.content | striptags | truncate) | safe }}</p>
+<a class="reading" href="{{page.permalink}}">Continue Reading</a>
+</article>
+{% endfor %}
 
-<ul>
-  {% for page in section.pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-  {% endfor %}
-</ul>
+<nav class="pagination">
+    {% if paginator.previous %}
+    <a class="pagina" href="{{paginator.previous}}">Previous</a>
+    {% endif %}
 
+    {% if paginator.next %}
+    <a class="pagina" href="{{paginator.next}}">Next</a>
+    {% endif %}
+</nav>
+
+</section>
 {% endblock content %}

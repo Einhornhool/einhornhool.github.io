@@ -1,0 +1,66 @@
+section.resume {
+    text-align: left;
+}
+
+.vl {
+    flex: 1;
+    margin-top:50px;
+    border-top: 2px solid $sk-grey-dark;
+    border-left: 2px solid $sk-grey-dark;
+    border-radius: 15px 0 0 0;
+    height: 50px;
+}
+
+.hl {
+    border-top: 1.5px solid white;
+}
+
+.cv {
+    display: flex;
+    flex-direction: row;
+}
+
+.skills {
+    flex: 2;
+    background-color: rgba($sk-orange, 0.8);
+    border-radius: 15px;
+    padding: 0 20px 0 20px;
+    color: white;
+    line-height: 1em;
+    font-weight: 500;
+}
+
+.timeline {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    color: $sk-bluegrey-dark;
+    line-height: 1em;
+}
+
+.item {
+    flex: 12;
+    background-color: rgba($sk-bluegrey-light, 1);
+    border-radius: 15px;
+    padding: 0 20px 5px 20px;
+    min-height: 150px;
+    color: $sk-grey-dark;
+    line-height: 1em;
+}
+
+.it {
+    flex-direction: column;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: row;
+}

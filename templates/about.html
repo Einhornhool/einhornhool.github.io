@@ -2,9 +2,10 @@
 
 {% block content %}
 
+<section class="about">
 <h1 class="title">
     {{ section.title }}
-  </h1>
-  {{ section.content | safe }}
-
+</h1>
+{{ section.content | safe }}
+</section>
 {% endblock content %}

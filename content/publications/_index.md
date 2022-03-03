@@ -1,5 +1,5 @@
 +++
 title = "Reading Recommendations"
-slug = "publications"
 template = "publications.html"
+sort_by = "date"
 +++

@@ -1,13 +1,16 @@
-{% extends "_play.html" %}
+{% extends "_base.html" %}
 
 {% block content %}
+
+<section class="blogpage">
 
 <h1 class="title">
   {{ page.title }}
 </h1>
-
-<p class="subtitle"><strong>{{ page.date }}</strong></p>
+<p class="subtitle">{{ page.date }}</p>
 
 {{ page.content | safe }}
+
+</section>
 
 {% endblock content %}

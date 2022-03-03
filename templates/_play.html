@@ -1,9 +1,0 @@
-{% extends "_base.html" %}
-
-{% block menu %}
-
-{% for link in config.extra.navbar.play %}
-    <a href="{{ link.url }}" class="menu">{{ link.name }}</a>
-{% endfor %}
-
-{% endblock menu %}

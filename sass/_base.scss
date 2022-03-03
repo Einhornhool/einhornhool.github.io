@@ -1,23 +1,71 @@
-html {
-    padding:0;
-    margin:1em;
+body {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, white, white 80px, $sk-bluegrey-light);
     font: 100% $font-stack;
-    color: white;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    background-color: $prim-color;
+    line-height: 2em;
+    color: $sk-grey-dark;
+    font-size: 1.2em;
 }
 
-body {
+footer {
+    height: 100px;
+}
+.headerbild {
     display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
 }
 
 a {
     text-decoration: none;
 }
 
-.menu {
-    color: white;
-    font-weight: bold;
+nav.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+a.menu {
+    color: $sk-bluegrey-dark;
+    font-weight: 600;
+    margin: 5px;
+}
+
+a.menu:hover {
+    color: $sk-orange;
+}
+
+a.menu:active {
+    color: $sk-orange;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 150px 0 150px;
+    text-align: center;
+}
+
+.button {
+    max-width: fit-content;
+    padding: 0 10px 0 10px;
+    font-weight: 500;
+    color: $sk-bluegrey-dark;
+    background-color: $sk-bluegrey-light;
+    border-radius: 5px;
+}
+
+.title {
+    color: $sk-bluegrey-dark;
+}
+
+.subtitle {
+    color: $sk-grey-light;
+    font-weight: 600;
 }

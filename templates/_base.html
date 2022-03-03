@@ -9,12 +9,24 @@
 </head>
 
 <body>
-    {% block menu %} {% endblock %}
-    <section class="section">
-        <div class="container">
-        {% block content %} {% endblock %}
+    <header>
+        <div class="headerbild">
+            <img class="logo" src="/img/skribbeltech-logo.png" alt="SkribbelTech Logo">
         </div>
-    </section>
+
+        <nav class="navigation">
+            <a class="menu" href="/">About</a>
+            <a class="menu" href="/blog">Blog</a>
+            <a class="menu" href="/resume">Resume</a>
+            <a class="menu" href="/publications">Publications</a>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock content %}
+
 </body>
 
+<footer>
+
+</footer>
 </html>

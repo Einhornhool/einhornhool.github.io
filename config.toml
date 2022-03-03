@@ -20,17 +20,13 @@ anchors = "on"
 
 [extra]
 enable_search = true
-enable_sidebar = true
 
 # Put all your custom variables here
 [extra.navbar]
-work = [
-    { url = "/", name = "Home" },
-    { url = "/work/resume", name = "Resume" },
-    { url = "/work/publications", name = "Publications" }
+links = [
+    { url = "/", name = "About" },
+    { url = "/blog", name = "Blog" },
+    { url = "/resume", name = "Resume" },
+    { url = "/publications", name = "Publications" }
 ]
 
-play = [
-    { url = "/", name = "Home" },
-    { url = "/blog", name = "Blog" }
-]
