@@ -10,6 +10,7 @@ body {
 footer {
     height: 100px;
 }
+
 .headerbild {
     display: flex;
     justify-content: center;
@@ -48,7 +49,7 @@ a.menu:active {
 section {
     display: flex;
     flex-direction: column;
-    margin: 0px 150px 0 150px;
+    margin: 0px 20% 0 20%;
     text-align: center;
 }
 

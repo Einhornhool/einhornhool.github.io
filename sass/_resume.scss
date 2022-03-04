@@ -18,6 +18,7 @@ section.resume {
 .cv {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap-reverse;
 }
 
 .skills {
@@ -25,6 +26,7 @@ section.resume {
     background-color: rgba($sk-orange, 0.8);
     border-radius: 15px;
     padding: 0 20px 0 20px;
+    margin-bottom: 20px;
     color: white;
     line-height: 1em;
     font-weight: 500;
