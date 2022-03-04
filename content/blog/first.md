@@ -1,6 +1,10 @@
 +++
-title = "My fourth post"
-date = 2019-11-26
+title = "Prologue"
+date = 2022-03-04
 +++
 
-Kitty power stretch out on bed, warm up laptop with butt lick butt fart rainbows until owner yells pee in litter box hiss at cats or scream for no reason at 4 am, yet spit up on light gray carpet instead of adjacent linoleum lick face hiss at owner, pee a lot, and meow repeatedly scratch at fence purrrrrr eat muffins and poutine until owner comes back and relentlessly pursues moth. Making bread on the bathrobe. See owner, run in terror ha ha, you're funny i'll kill you last destroy dog eat a rug and furry furry hairs everywhere oh no human coming lie on counter don't get off counter. Purr when give birth whenever a door is opened, rush in before the human sit and stare stand in front of the computer screen immediately regret falling into bathtub cat meoooow i iz master of hoomaan, not hoomaan master of i, oooh damn dat dog for scratch me there, elevator butt. Meow all night eat fish on floor but lay on arms while you're using the keyboard and stick butt in face walk on keyboard, eat too much then proceed to regurgitate all over living room carpet while humans eat dinner scratch so owner bleeds. Pretend not to be evil destroy the blinds so roll on the floor purring your whiskers off pet me pet me don't pet me catty ipsum. Naughty running cat walk on keyboard chew iPad power cord mesmerizing birds. Fat baby cat best buddy little guy find something else more interesting ccccccccccccaaaaaaaaaaaaaaatttttttttttttttttssssssssssssssss run at 3am or spill litter box, scratch at owner, destroy all furniture, especially couch i heard this rumor where the humans are our owners, pfft, what do they know?!. Knock dish off table head butt cant eat out of my own dish kick up litter. Found somthing move i bite it tail. Curl into a furry donut. Sleep sleep over your phone and make cute snoring noises, i shall purr myself to sleep hide head under blanket so no one can see meow and walk away. Rub whiskers on bare skin act innocent eat owner's food so play riveting piece on synthesizer keyboard and stare at wall turn and meow stare at wall some more meow again continue staring murder hooman toes only use one corner of the litter box.
+Dear person,
+
+welcome to my blog. There's not so much to see here, yet, but I am going to add content about tech stuff, learning and studying computer science, art and whatever interests me (which is a lot).
+
+Stay tuned!

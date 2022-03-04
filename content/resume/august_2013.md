@@ -1,8 +1,8 @@
 +++
-title = "Internet Technologies Group"
-date = 2013-08-01
+title = "High School"
+date = 2010-06-01
 +++
 
-Until June 2010
+Until Summer 2010
 
 Gymnasium Süd Buxtehude, Degree: Abitur
