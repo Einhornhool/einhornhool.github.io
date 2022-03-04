@@ -1,6 +1,6 @@
 # The URL the site will be built for
 # base_url = "https://lenaboeckmann.de"
-base_url = "https://einhornhool.github.io/"
+base_url = "https://skribbel.tech/"
 
 title = "Portfolio"
 
