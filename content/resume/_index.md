@@ -1,5 +1,5 @@
 +++
-title = "What have I done with my life?"
-template = "resume.html"
+path = "resume"
+template = "publications.html"
 sort_by = "date"
 +++
