@@ -1,16 +1,13 @@
-{% extends "_base.html" %}
+{% extends "index.html" %}
 
 {% block content %}
 <section class="pubs">
-    <h1 class="title"> {{ section.title }}</h1>
     <div class="cv">
         <div class="timeline">
             {% for page in section.pages %}
-                <div class="timeline-item">
-                    <div class="pub-item">
-                        <h4>{{ page.title }}</h4>
-                        <p>{{ page.content | safe }}</p>
-                    </div>
+                <div class="item">
+                    <h5 class="post-title">{{ page.title }}</h5>
+                    <p>{{ page.content | safe }}</p>
                 </div>
             {% endfor %}
         </div>
