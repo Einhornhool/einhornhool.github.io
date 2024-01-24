@@ -1,0 +1,3 @@
+[submodule "themes/zhuia"]
+	path = themes/zhuia
+	url = https://github.com/gicrisf/zhuia.git
