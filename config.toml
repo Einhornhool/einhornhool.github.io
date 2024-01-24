@@ -3,30 +3,94 @@ base_url = "https://lenas-fieldnotes.de/"
 
 title = "Lena's Fieldnotes"
 
+theme = "zhuia"
+
+# Whether to generate a RSS feed automatically
+generate_feed = true
+feed_filename = "rss.xml"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
-
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = false
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
-[slugify]
-paths = "on"
-taxonomies = "on"
-anchors = "on"
+# Built in taxonomies of huia.
+taxonomies = [
+           {name = "tags"},
+           {name = "categories"},
+]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = false
 
 [extra]
-enable_search = true
+# The max-width of the page content
+grid_size = "grid-lg"
 
-# Put all your custom variables here
-[extra.navbar]
-links = [
-    { url = "/", name = "About" },
-    { url = "/blog", name = "Blog" },
-    { url = "/resume", name = "Resume" },
-    { url = "/publications", name = "Publications" }
+custom_css = true
+
+# Whether to enable KaTeX or not
+katex = true
+
+# Default author for articles
+author = "Lena Boeckmann"
+
+show_author = true
+show_tags = true
+show_categories = true
+read_more_prompt = "read more"
+read_post_prompt = "read post"
+
+# Menu
+logo_image = "./img/temp-logo.png"
+
+hamburger_menu = true
+
+footer_tagline = "This is a footer."
+
+# Menu items to display. You define a url and the name of the menu item.
+# NOTE: `$BASE_URL/` must be included in the url name.
+main_menu = [
+              {url="/tags/", name="tags"},
+              {url="/categories/", name="categories"},
+              {url="/publications", name="publications"},
+              {url="/resume", name="resume"},
 ]
+
+# Footer
+
+# footer_tagline = "Your tagline"
+
+# Social media buttons to display. You define a url and the name of the platform.
+social_links = [
+    {url = "https://github.com/Einhornhool", name = "Github"},
+    {url = "http://inet.haw-hamburg.de/publications/LenaBoeckmann.html", name = "INET Research"},
+    {url = "https://www.linkedin.com/in/lena-boeckmann-2a4a5425a/", name = "LinkedIn"}
+]
+
+
+[extra.sidebar]
+# Enable/Disable sidebar
+active=true
+
+# Include a text snippet in the sidebar
+# You can format it with HTML
+# text_snippet="Some <strong>HTML</strong> here! It's <mark>safe</mark>!"
+
+# Author card
+author_bio = "I am Lena (she/her) from Hamburg, Germany and I am a computer science student at the University of Applied Sciences. Here I post my publications, CV and write about what I learn."
+author_avatar = "img/portrait_cropped.jpg"
+
+# Include search bar
+# TODO template
+
+# Embed twitter iframe in the sidebar
+tweets_by="@einhornhool"
+
+popular_tags=true
+archive=true
+related_posts=false #TODO
 
