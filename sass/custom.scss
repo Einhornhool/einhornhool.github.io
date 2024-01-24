@@ -1,0 +1,32 @@
+section.resume {
+    text-align: left;
+}
+
+mastodon-widget {
+    --color-background: #fff;
+    --button-background: #22b490;
+    --color-link: #22b490;
+}
+
+.post-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+
+.sidebar-widget {
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,0.1);
+}
+
+.paginator {
+    background: linear-gradient(225deg,#90bff8 0%,#22b490 65%,#004a40 100%);
+}
+
+.item {
+    box-shadow: 0 10px 45px -9px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px 20px 5px 20px;
+    min-height: 150px;
+    margin-bottom: 20px;
+}
