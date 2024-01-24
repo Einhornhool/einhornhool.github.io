@@ -1,3 +1,7 @@
 +++
-redirect_to = "about"
+title = "Lena's Fieldnotes"
+sort_by = "date"
+transparent = true
+paginate_by = 5
+insert_anchor_links = "right"
 +++

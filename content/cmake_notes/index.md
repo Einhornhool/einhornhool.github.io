@@ -2,10 +2,15 @@
 title = "WTF are CMAKE Interface Targets"
 date = 2023-12-20
 draft = true
+[taxonomies]
+tags = ["cmake", "learning"]
+categories = ["programming"]
 +++
 
 For my current job I need to write test applications for quite a large codebase. This software uses a complex, *historically grown*[¹] build system, comprising of different build tools and build generators, which somehow all work together.
 Part of this system is, as in most larger C/C++ code bases, CMAKE.
+
+<!-- more -->
 
 So far I haven't had much experience with CMAKE, because RIOT OS does not use it. I have integrated a few third-party packages in RIOT, which needed to be configured and build with CMAKE, but apart from that I have no idea how to actually use it.
 To be honest, I've even tried actively to avoid it. To me it seemed comlicated and I never really understood their documentation. During my work with RIOT I got used to working with plain Makefiles and messing around with them directly.

@@ -1,5 +1,9 @@
 +++
-template = "about.html"
+title = "About"
+path = "about"
+
+[extra]
+date = 2023-12-21
 +++
 
 ![author portrait](/img/portrait.jpg#portrait)
