@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2024-06-07T21:58:55.933Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="b6Xf6njZmWRGdOFl8yFk" version="21.3.7" type="device">
+  <diagram name="Page-1" id="zldKVhyhG20Y3JBw-Aif">
+    <mxGraphModel dx="1430" dy="862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EF6E9aT5OyxLr12Lk3b--2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82B366;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="EF6E9aT5OyxLr12Lk3b--3" value="&lt;p style=&quot;line-height: 220%;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Quicksand&quot; face=&quot;Quicksand&quot; style=&quot;font-size: 17px;&quot;&gt;&lt;b&gt;config_led&lt;br&gt;led_on&lt;br&gt;led_off&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="190" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="EF6E9aT5OyxLr12Lk3b--4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B85450;strokeColor=#B85450;" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="EF6E9aT5OyxLr12Lk3b--5" value="&lt;p style=&quot;line-height: 220%;&quot;&gt;&lt;font face=&quot;Quicksand&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;&lt;b&gt;Reset_Handler&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="180" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

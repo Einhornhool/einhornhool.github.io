@@ -26,7 +26,53 @@ mastodon-widget {
     box-shadow: 0 10px 45px -9px rgba(0,0,0,0.1);
     background: #fff;
     border-radius: 15px;
-    padding: 20px 20px 5px 20px;
+    padding: 20px 20px 20px 20px;
     min-height: 150px;
     margin-bottom: 20px;
+}
+
+pre code, pre.xdebug-var-dump{
+    background: #313131;
+    display: block;
+    padding: 1rem !important;
+    line-height: 1.5;
+    color: inherit;
+    border-radius: 2px;
+    overflow-x: auto;
+  }
+
+  pre[class*="language-"] {
+    code {
+      border-radius: inherit;
+      padding: 1rem;
+      overflow: auto;
+      overflow-x: initial;
+    }
+  }
+
+  pre {
+    code:not(.hljs):not([class*="language-"]) {
+      background: #313131;
+    }
+  }
+
+pre table td {
+    padding: 0;
+}
+// The line number cells
+pre table td:nth-of-type(1) {
+    text-align: right;
+    user-select: none;
+    padding-right: 15px;
+}
+
+pre mark {
+    // If you want your highlights to take the full width.
+    display: block;
+    // The default background colour of a mark is bright yellow
+    background-color: rgba(254, 252, 232, 0.9);
+}
+pre table {
+    width: 100%;
+    border-collapse: collapse;
 }
