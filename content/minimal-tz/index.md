@@ -34,7 +34,7 @@ This might be fine for people who just want to use the boards for some project a
 But it really sucks if you want to do your own thing.
 
 Luckily there are a small number of people who ignore this and who provided helpful code examples on the forums.
-The first one I found was [this](https://devzone.nordicsemi.com/f/nordic-q-a/92877/bare-metal-programming-on-the-nrf9160), which is just a simple bare-metal application that turns LEDs on and off.
+The first one I found was [this](https://devzone.nordicsemi.com/f/nordic-q-a/92877/bare-metal-programming-on-the-nrf9160), which is just a simple application that turns LEDs on and off.
 This consists of just one `main` function and a Makefile and does not use the TrustZone at all.
 
 The second one was [this](https://devzone.nordicsemi.com/f/nordic-q-a/96093/nrf9160-porting-the-modem-library-to-work-with-bare-metal-application) example, which consists of a secure bootloader and a non-secure application.
@@ -53,7 +53,7 @@ The next step was to find out what I needed to to.
 Of course I had the nRF9160 reference manual, the Armv8-M reference manual and some other documentation and blog posts from Arm.
 I've also previously ported [Trusted Firmware-M (TF-M)](https://trustedfirmware-m.readthedocs.io/en/latest/index.html) to RIOT, which already helped in getting an idea of what a secure application could look like and what is needed to build and run two different images on a board.
 But reference manuals are mostly theoretical and TF-M is quite bloated and complex, which makes it hard to comprehend.
-Some googling lead me to a [basic TrustZone example from Microchip](https://microchip-mplab-harmony.github.io/csp_apps_sam_l10_l11/apps/trustZone/trustZone_basic/readme.html) and this pretty cool [blog post](https://m10.io/blog/highway-to-the-trustzone) about a Rust example for the nRF5340.
+Some more googling lead me to a [basic TrustZone example from Microchip](https://microchip-mplab-harmony.github.io/csp_apps_sam_l10_l11/apps/trustZone/trustZone_basic/readme.html) and this [pretty cool blog post](https://m10.io/blog/highway-to-the-trustzone) about a Rust example for the nRF5340.
 Both resources were very helpful in figuring out the necessary steps.
 
 So here's what I did:
@@ -62,11 +62,12 @@ So here's what I did:
 ### The Secure Side
 #### Non-Secure Entry (NSE) Functions
 ![diagram: on the left a red box symbolizes the non-secure image in non-secure flash, on the right side there's a green box symbolizing the secure image with three secure entry functions. between them there is a blue box symbolizing the veneer functions. an arrow points from the non-secure box to the veneers, a second arrow points from the veneers to the secure box and a third arrow points from the secure box directly to the non-secure box.](veneers.jpeg "Diagram showing the communication between NS and S images")
-For communication between we need some NSE functions, also called **secure gates**.
+For communication between the two images we need some NSE functions, also called **secure gates**.
 Those are *veneer* functions, which will placed in a special memory region that can be called from the non-secure side and will trigger the transition to the secure state to perform a secure execution (more on this later).
 I wanted to keep this as simple as possible, so I wrote three functions to configure and toggle the four LEDs that are soldered to the nRF9160dk board.
-As you can see, the functions access the secure address of the GPIO pins (defined as `NRF_P0_S`).
+As you can see below, the functions access the secure address of the GPIO pins (defined as `NRF_P0_S`).
 The C-file below includes the `arm_cmse.h` header file (*CMSE* means *Cortex-M Security Extension*), which is part of the Arm GNU Toolchain (link can be found in the code repository) and is needed to define secure entry functions and to implement secure software.
+I then gave the functions the attribute `cmse_nonsecure_entry`, so the compiler will know that they are and will treat them accordingly.
 
 ```c,linenos
 #include <arm_cmse.h>
@@ -89,7 +90,7 @@ void __attribute__((cmse_nonsecure_entry)) led_off(int offset)
 ```
 
 #### The Linker Script
-The NSC functions need to be implemented on the secure side, but also linked to the non-secure side.
+The NSE functions need to be implemented on the secure side, but also linked with the non-secure side.
 For this they get their very own memory region: The **non-secure-callable (NSC)** region is placed at the very end of the secure flash region and needs to be added to the secure linker file.
 The excerpt below shows that the secure flash region starts at address 0x0 and is 64KB large.
 The NSC region has a size of 32 Bytes (which is the minimal possible size) and is placed at the end of the 64K.
@@ -155,8 +156,8 @@ Since we only have three small functions, we can use the minimum NSC size, which
 The non-secure side is quite easy.
 It should not be aware of the secure image and "think" that it's the only application running on the system, so we can implement it like any other C-program.
 There are only two things to consider:
-1. The NSE functions need to be declared somewhere to make them available to our code (I added the `ns_entry.h` file, but you could also declare them as external functions in `main.c`).
-2. The linker script needs to define flash and RAM starting addresses after the secure flash and RAM regions.
+1. The NSE functions need to be declared somewhere to make them available to our code (I added the `ns_entry.h` file).
+2. The non-secure linker script needs to define flash and RAM starting addresses after the secure flash and RAM regions.
 
 ### Building and Linking
 When building the secure image, we need to add the compiler flag `-mcmse`.
