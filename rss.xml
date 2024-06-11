@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Lena&#x27;s Fieldnotes</title>
+      <link>https://lenas-fieldnotes.de/</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://lenas-fieldnotes.de/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Sun, 09 Jun 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Exploring TrustZone-M on the nRF9160</title>
+          <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/minimal-tz/</link>
+          <guid>https://lenas-fieldnotes.de/minimal-tz/</guid>
+          <description>&lt;p&gt;I am working with the IoT operating system &lt;a href=&quot;https:&#x2F;&#x2F;www.riot-os.org&#x2F;&quot;&gt;RIOT-OS&lt;&#x2F;a&gt; and have been developing some cryptography features for it.
+For my master thesis I&#x27;m exploring Trusted Execution Environments (TEE) for RIOT and how to integrate them with the OS.
+Newer Arm Cortex-M devices with the Armv8-m architecture offer a hardware security mechanism called TrustZone-M (TZ-M), that can be used to efficiently implement secure processing environments.
+One platform with TZ-M that is also supported by RIOT is the Nordic nRF9160dk, which I am using for a PoC for my thesis.
+To understand how TZ-M works and what is needed to use it, I started looking for a nice, minimal bare-metal example with simple secure and non-secure images and a simple linker file.
+Finding such an example for Nordic boards was surprisingly difficult, so I assembled all the information and code snippets I could get and build my own little project, which I now &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Einhornhool&#x2F;minimal-tz&#x2F;&quot;&gt;share on Github&lt;&#x2F;a&gt;.
+In this blog post I&#x27;ll explain how I collected that information and what I did to get it running eventually.&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Prologue</title>
+          <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/first/</link>
+          <guid>https://lenas-fieldnotes.de/first/</guid>
+          <description>&lt;p&gt;Dear person,&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>MOIA</title>
+          <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/november-23/</link>
+          <guid>https://lenas-fieldnotes.de/resume/november-23/</guid>
+          <description>&lt;p&gt;Since 11&#x2F;01&#x2F;2023&lt;&#x2F;p&gt;
+&lt;p&gt;Switch to MOIA Hamburg as Working Student Cyber Security&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Usable Security for an IoT OS: Integrating the Zoo of Embedded Crypto Components Below a Common API </title>
+          <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/publications/ewsn-2022/</link>
+          <guid>https://lenas-fieldnotes.de/publications/ewsn-2022/</guid>
+          <description>&lt;p&gt;&lt;strong&gt;Date:&lt;&#x2F;strong&gt; October 2022&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Conference:&lt;&#x2F;strong&gt;
+International Conference on Embedded Wireless Systems and Networks&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Authors:&lt;&#x2F;strong&gt; Lena Boeckmann, Peter Kietzmann, Leandro Lanzieri, Thomas C. Schmidt, Matthias Wählisch&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2208.09281.pdf&quot;&gt;Publication&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Poster Abstract: Offloading Crypto Processing with RIOT</title>
+          <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/publications/ipsn-2022/</link>
+          <guid>https://lenas-fieldnotes.de/publications/ipsn-2022/</guid>
+          <description>&lt;p&gt;&lt;strong&gt;Date:&lt;&#x2F;strong&gt; May 2022&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Conference:&lt;&#x2F;strong&gt;
+Proc. of ACM&#x2F;IEEE Int. Conf. on Information Processing in Sensor Networks (IPSN &#x27;22), Poster Session&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Authors:&lt;&#x2F;strong&gt; Lena Boeckmann, Peter Kietzmann,  Thomas C. Schmidt, Matthias Wählisch&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Internet Technologies Group</title>
+          <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/march-22-inet/</link>
+          <guid>https://lenas-fieldnotes.de/resume/march-22-inet/</guid>
+          <description>&lt;p&gt;Since 03&#x2F;01&#x2F;2022 – 10&#x2F;31&#x2F;2023&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Research Assistant&lt;&#x2F;strong&gt; developing the open source IoT operating system RIOT OS&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Hamburg University of Applied Sciences</title>
+          <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/march-22/</link>
+          <guid>https://lenas-fieldnotes.de/resume/march-22/</guid>
+          <description>&lt;p&gt;Since 03&#x2F;01&#x2F;2022&lt;&#x2F;p&gt;
+&lt;p&gt;Studying for M. Sc. in Computer Science&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>A Performance Study of Crypto-Hardware in the Low-end IoT</title>
+          <pubDate>Sat, 13 Feb 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/publications/ewsn-2021/</link>
+          <guid>https://lenas-fieldnotes.de/publications/ewsn-2021/</guid>
+          <description>&lt;p&gt;&lt;strong&gt;Date:&lt;&#x2F;strong&gt; February 2021&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Conference:&lt;&#x2F;strong&gt;
+International Conference on Embedded Wireless Systems and Networks&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Authors:&lt;&#x2F;strong&gt; Peter Kietzmann, Lena Boeckmann, Leandro Lanzieri, Thomas C. Schmidt, Matthias Wählisch&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;eprint.iacr.org&#x2F;2021&#x2F;058&quot;&gt;Publication&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Turku University of Applied Sciences</title>
+          <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/august-01/</link>
+          <guid>https://lenas-fieldnotes.de/resume/august-01/</guid>
+          <description>&lt;p&gt;08&#x2F;15&#x2F;2020 – 05&#x2F;19&#x2F;2021&lt;&#x2F;p&gt;
+&lt;p&gt;Spending two Erasmus Semesters&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Internet Technologies Group</title>
+          <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/june-19/</link>
+          <guid>https://lenas-fieldnotes.de/resume/june-19/</guid>
+          <description>&lt;p&gt;07&#x2F;01&#x2F;2019 – 02&#x2F;28&#x2F;2022&lt;&#x2F;p&gt;
+&lt;p&gt;Research Student developing the open source IoT operating system RIOT OS&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Hamburg University of Applied Sciences</title>
+          <pubDate>Sat, 01 Sep 2018 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/september-18/</link>
+          <guid>https://lenas-fieldnotes.de/resume/september-18/</guid>
+          <description>&lt;p&gt;09&#x2F;01&#x2F;2018 – 09&#x2F;16&#x2F;2021&lt;&#x2F;p&gt;
+&lt;p&gt;Degree: B. Sc. in European Computer Science&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>KNSK Werbeagentur GmbH</title>
+          <pubDate>Sun, 01 Jun 2014 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/summer-2014/</link>
+          <guid>https://lenas-fieldnotes.de/resume/summer-2014/</guid>
+          <description>&lt;p&gt;06&#x2F;2014 – 06&#x2F;2019&lt;&#x2F;p&gt;
+&lt;p&gt;Junior Art Director&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>KNSK Werbeagentur GmbH</title>
+          <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/spring-2014/</link>
+          <guid>https://lenas-fieldnotes.de/resume/spring-2014/</guid>
+          <description>&lt;p&gt;02&#x2F;2014 – 06&#x2F;2014&lt;&#x2F;p&gt;
+&lt;p&gt;Apprenticeship as Media Designer &lt;br&gt;for Digital and Print Media&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Gelee Royale Medien GmbH</title>
+          <pubDate>Mon, 01 Aug 2011 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/summer-2011/</link>
+          <guid>https://lenas-fieldnotes.de/resume/summer-2011/</guid>
+          <description>&lt;p&gt;08&#x2F;2011 – 01&#x2F;2014&lt;&#x2F;p&gt;
+&lt;p&gt;Apprenticeship as Media Designer &lt;br&gt;for Digital and Print Media&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>High School</title>
+          <pubDate>Tue, 01 Jun 2010 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lenas-fieldnotes.de/resume/august-2013/</link>
+          <guid>https://lenas-fieldnotes.de/resume/august-2013/</guid>
+          <description>&lt;p&gt;Until Summer 2010&lt;&#x2F;p&gt;
+&lt;p&gt;Gymnasium Süd Buxtehude, Degree: Abitur&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
