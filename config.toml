@@ -4,9 +4,10 @@ base_url = "https://lenas-fieldnotes.de/"
 title = "Lena's Fieldnotes"
 
 theme = "zhuia"
+
 # Whether to generate a RSS feed automatically
-generate_feed = true
-feed_filename = "rss.xml"
+generate_feeds = true
+feed_filenames = ['rss.xml']
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true

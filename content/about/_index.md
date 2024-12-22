@@ -1,6 +1,5 @@
 +++
 title = "About"
-path = "about"
 
 [extra]
 date = 2023-12-21
