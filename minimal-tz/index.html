@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+  <head>
+    <title>Exploring TrustZone-M on the nRF9160 - Lena&#x27;s Fieldnotes</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="I am working with the IoT operating system RIOT-OS and have been developing some cryptography features for it.
+For my master thesis I&#x27;m exploring Trusted Execution Environments (TEE) for RIOT and how …"/>
+
+    <meta property="og:title" content="Lena&#x27;s Fieldnotes -&nbsp;Exploring TrustZone-M on the nRF9160" />
+    <meta property="og:type" content="website"/><meta property="og:url" content="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;minimal-tz&#x2F;"/><meta property="og:description" content=""/>
+
+
+    <meta name="twitter:card" content="summary">
+
+
+    <link rel="stylesheet" href="https://lenas-fieldnotes.eu/spectre/spectre.css">
+    <link rel="stylesheet" href="https://lenas-fieldnotes.eu/theme.css"><link rel="stylesheet" href="https://lenas-fieldnotes.eu/custom.css">
+    
+
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script>
+        function doRenderMath() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                {left: "\\begin{align}", right: "\\end{align}", display: true},
+                {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                {left: "\\[", right: "\\]", display: true}
+                ]
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+        onload="doRenderMath()"></script>
+
+      </head>
+  <body id="top" class="sticky-footer"><div id="page-wrapper">
+<header id="header" class="section">
+  <section class="container grid-lg">
+    <nav class="navbar">
+      <section class="navbar-section">
+        
+<a class="site-logo" href="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;">
+  
+  <div class="col-mx-auto">
+    <figure style="margin: 8px">
+      <img class="img-responsive"
+           style="max-height: 45px"
+           alt="frontmatter image"
+           src="https://lenas-fieldnotes.eu/./img/temp-logo.png">
+    </figure>
+  </div>
+  
+</a>
+
+      </section><!-- ./home button -->
+
+      <section class="navbar-center hide-md"></section>
+
+      <section class="navbar-section">
+        <nav class="dropmenu animated hide-md">
+
+<ul><li>
+        <a href="https://lenas-fieldnotes.eu/tags">tags</a>
+    </li><li>
+        <a href="https://lenas-fieldnotes.eu/categories">categories</a>
+    </li><li>
+        <a href="https://lenas-fieldnotes.eu/publications">publications</a>
+    </li><li>
+        <a href="https://lenas-fieldnotes.eu/resume">resume</a>
+    </li></ul>
+
+
+          </nav>
+      </section><!-- ./desktop-menu -->
+    </nav>
+  </section><!-- ./container -->
+</header>
+
+
+<div class="mobile-menu">
+  <div class="button_container" id="toggle" onclick="openOverlay()">
+    <span class="top"></span>
+    <span class="middle"></span>
+    <span class="bottom"></span>
+  </div>
+</div><!--./mobile-menu-->
+
+
+<section id="start"><section id="body-wrapper" class="section">
+          <section class="container grid-lg">
+<div id="breadcrumbs" itemtype="http://schema.org/BreadcrumbList" class="hide-sm">
+  
+    
+    <span><a href="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;">Lena&#x27;s Fieldnotes</a></span>
+  
+    <span><a href="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;minimal-tz&#x2F;">Exploring TrustZone-M on the nRF9160</a></span>
+</div>
+<div class="columns">
+              <div id="item" class="column col-8 col-md-12 extra-spacing">
+<div class="card">
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  <div class="card-image">
+      <a href="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;minimal-tz&#x2F;nRF9160.jpeg">
+        <img
+          alt="Exploring TrustZone-M on the nRF9160"
+          class="post-cover
+                 "
+          srcset="https://lenas-fieldnotes.eu/processed_images/nRF9160.923db5e9ad773e77.jpg 300w,
+                  https://lenas-fieldnotes.eu/processed_images/nRF9160.5da0bd12c48bc888.jpg 600w,
+                  https://lenas-fieldnotes.eu/processed_images/nRF9160.6122b08ad2febf33.jpg 900w,
+                  https://lenas-fieldnotes.eu/processed_images/nRF9160.1dc8412ba99b51cf.jpg 1200w,"
+          sizes="(max-width: 800px) 90vw,
+                 1200px">
+
+      </a>
+    </div><!--./card-image-->
+    
+    
+
+    <div class="card-header">
+      <div class="card-title" style="margin-top: .25rem;"><div>
+          <h1 class="post-title">Exploring TrustZone-M on the nRF9160</h1>
+          
+    <div class="post-meta" style="display: inline-flex">
+        <span class="blog-date" style="display: inline-flex;">
+          <i class="gg-calendar" style="margin-right: 5px;"></i><time datetime="2024.06.09">
+          2024.06.09
+          </time></span><span class="post-author" style="margin-left: 5px; display: inline-flex;">
+          - 
+    Lena Boeckmann
+        </span></div>
+
+        </div></div>
+    </div><!--./card-header-->
+
+    <div class="card-body">
+      
+        <p>I am working with the IoT operating system <a href="https://www.riot-os.org/">RIOT-OS</a> and have been developing some cryptography features for it.
+For my master thesis I'm exploring Trusted Execution Environments (TEE) for RIOT and how to integrate them with the OS.
+Newer Arm Cortex-M devices with the Armv8-m architecture offer a hardware security mechanism called TrustZone-M (TZ-M), that can be used to efficiently implement secure processing environments.
+One platform with TZ-M that is also supported by RIOT is the Nordic nRF9160dk, which I am using for a PoC for my thesis.
+To understand how TZ-M works and what is needed to use it, I started looking for a nice, minimal bare-metal example with simple secure and non-secure images and a simple linker file.
+Finding such an example for Nordic boards was surprisingly difficult, so I assembled all the information and code snippets I could get and build my own little project, which I now <a href="https://github.com/Einhornhool/minimal-tz/">share on Github</a>.
+In this blog post I'll explain how I collected that information and what I did to get it running eventually.</p>
+<span id="continue-reading"></span>
+<blockquote>
+<p><strong>I assume you know</strong></p>
+<ul>
+<li>what the Arm TrustZone is (<a href="https://sandro2pinto.github.io/files/acmcsur2019-tz.pdf">here's a good paper</a>)</li>
+<li>how to program and flash a microcontroller</li>
+<li>how to write and read C language</li>
+<li>what makefiles and linkerfiles are</li>
+</ul>
+</blockquote>
+<h2 id="finding-a-starting-point">Finding a Starting Point<a class="zola-anchor" href="#finding-a-starting-point" aria-label="Anchor link for: finding-a-starting-point">🔗</a></h2>
+<p>My goal for this project was to write a very small application that utilizes the TrustZone-M technology.
+So of course I opened the big bad search engine and typed <code>Nordic nRF9160 bare-metal example</code>.
+I quickly learned that, while bare-metal programming Nordic boards is possible, the vendor does not offer any help for people who want to try it.
+Questions on the forum are usually answered with something along the lines of &quot;Please use our SDK and/or Zephyr OS&quot;.
+This might be fine for people who just want to use the boards for some project and don't care much about making choices in terms developing environments.
+But it really sucks if you want to do your own thing.</p>
+<p>Luckily there are a small number of people who ignore this and who provided helpful code examples on the forums.
+The first one I found was <a href="https://devzone.nordicsemi.com/f/nordic-q-a/92877/bare-metal-programming-on-the-nrf9160">this</a>, which is just a simple application that turns LEDs on and off.
+This consists of just one <code>main</code> function and a Makefile and does not use the TrustZone at all.</p>
+<p>The second one was <a href="https://devzone.nordicsemi.com/f/nordic-q-a/96093/nrf9160-porting-the-modem-library-to-work-with-bare-metal-application">this</a> example, which consists of a secure bootloader and a non-secure application.
+This is one step closer to what I need, but still not exactly the right thing.
+The makefile of this app produces two binaries: a bootloader image and a non-secure app.
+The bootloader configures secure and non-secure memory regions and then starts the non-secure app.
+All operations are then performed on the non-secure side without ever calling secure functions.
+My goal is to actually have a secure and non-secure image running side-by-side and have the non-secure side call some functions provided by the secure side.</p>
+<p>This example also provides two very simple linker scripts for the two images, which is great, because linker scripts are one of the things I still struggle with.</p>
+<p>These two projects are what I base my minimal project on.</p>
+<h2 id="extending-the-code">Extending the Code<a class="zola-anchor" href="#extending-the-code" aria-label="Anchor link for: extending-the-code">🔗</a></h2>
+<p>The next step was to find out what I needed to to.
+Of course I had the nRF9160 reference manual, the Armv8-M reference manual and some other documentation and blog posts from Arm.
+I've also previously ported <a href="https://trustedfirmware-m.readthedocs.io/en/latest/index.html">Trusted Firmware-M (TF-M)</a> to RIOT, which already helped in getting an idea of what a secure application could look like and what is needed to build and run two different images on a board.
+But reference manuals are mostly theoretical and TF-M is quite bloated and complex, which makes it hard to comprehend.
+Some more googling lead me to a <a href="https://microchip-mplab-harmony.github.io/csp_apps_sam_l10_l11/apps/trustZone/trustZone_basic/readme.html">basic TrustZone example from Microchip</a> and this <a href="https://m10.io/blog/highway-to-the-trustzone">pretty cool blog post</a> about a Rust example for the nRF5340.
+Both resources were very helpful in figuring out the necessary steps.</p>
+<p>So here's what I did:</p>
+<h3 id="the-secure-side">The Secure Side<a class="zola-anchor" href="#the-secure-side" aria-label="Anchor link for: the-secure-side">🔗</a></h3>
+<h4 id="non-secure-entry-nse-functions">Non-Secure Entry (NSE) Functions<a class="zola-anchor" href="#non-secure-entry-nse-functions" aria-label="Anchor link for: non-secure-entry-nse-functions">🔗</a></h4>
+<p><img src="https://lenas-fieldnotes.eu/minimal-tz/veneers.jpeg" alt="diagram: on the left a red box symbolizes the non-secure image in non-secure flash, on the right side there's a green box symbolizing the secure image with three secure entry functions. between them there is a blue box symbolizing the veneer functions. an arrow points from the non-secure box to the veneers, a second arrow points from the veneers to the secure box and a third arrow points from the secure box directly to the non-secure box." title="Diagram showing the communication between NS and S images" />
+For communication between the two images we need some NSE functions, also called <strong>secure gates</strong>.
+Those are <em>veneer</em> functions, which will placed in a special memory region that can be called from the non-secure side and will trigger the transition to the secure state to perform a secure execution (more on this later).
+I wanted to keep this as simple as possible, so I wrote three functions to configure and toggle the four LEDs that are soldered to the nRF9160dk board.
+As you can see below, the functions access the secure address of the GPIO pins (defined as <code>NRF_P0_S</code>).
+The C-file below includes the <code>arm_cmse.h</code> header file (<em>CMSE</em> means <em>Cortex-M Security Extension</em>), which is part of the Arm GNU Toolchain (link can be found in the code repository) and is needed to define secure entry functions and to implement secure software.
+I then gave the functions the attribute <code>cmse_nonsecure_entry</code>, so the compiler will know that they are and will treat them accordingly.</p>
+<pre data-linenos data-lang="c" style="background-color:#282a36;color:#f8f8f2;" class="language-c "><code class="language-c" data-lang="c"><table><tbody><tr><td>1</td><td><span style="color:#ff79c6;">#include </span><span style="color:#f1fa8c;">&lt;arm_cmse.h&gt;
+</span></td></tr><tr><td>2</td><td><span style="color:#ff79c6;">#include </span><span style="color:#f1fa8c;">&quot;nrfx.h&quot;
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span style="font-style:italic;color:#8be9fd;">void </span><span style="color:#ff79c6;">__attribute__</span><span>((cmse_nonsecure_entry)) </span><span style="color:#50fa7b;">config_leds</span><span>(</span><span style="font-style:italic;color:#8be9fd;">void</span><span>)
+</span></td></tr><tr><td>5</td><td><span style="color:#ffffff;">{
+</span></td></tr><tr><td>6</td><td><span>    NRF_P0_S</span><span style="color:#ff79c6;">-&gt;</span><span>DIRSET </span><span style="color:#ff79c6;">|= </span><span>(</span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span style="color:#bd93f9;">5</span><span>) </span><span style="color:#ff79c6;">| </span><span>(</span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span style="color:#bd93f9;">4</span><span>) </span><span style="color:#ff79c6;">| </span><span>(</span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span style="color:#bd93f9;">3</span><span>) </span><span style="color:#ff79c6;">| </span><span>(</span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span style="color:#bd93f9;">2</span><span>);
+</span></td></tr><tr><td>7</td><td><span style="color:#ffffff;">}
+</span></td></tr><tr><td>8</td><td><span>
+</span></td></tr><tr><td>9</td><td><span style="font-style:italic;color:#8be9fd;">void </span><span style="color:#ff79c6;">__attribute__</span><span>((cmse_nonsecure_entry)) </span><span style="color:#50fa7b;">led_on</span><span>(</span><span style="font-style:italic;color:#8be9fd;">int </span><span style="font-style:italic;color:#ffb86c;">offset</span><span>)
+</span></td></tr><tr><td>10</td><td><span style="color:#ffffff;">{
+</span></td></tr><tr><td>11</td><td><span>    NRF_P0_S</span><span style="color:#ff79c6;">-&gt;</span><span>OUTSET </span><span style="color:#ff79c6;">|= </span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span>(offset</span><span style="color:#ff79c6;">+</span><span style="color:#bd93f9;">2</span><span>);
+</span></td></tr><tr><td>12</td><td><span style="color:#ffffff;">}
+</span></td></tr><tr><td>13</td><td><span>
+</span></td></tr><tr><td>14</td><td><span style="font-style:italic;color:#8be9fd;">void </span><span style="color:#ff79c6;">__attribute__</span><span>((cmse_nonsecure_entry)) </span><span style="color:#50fa7b;">led_off</span><span>(</span><span style="font-style:italic;color:#8be9fd;">int </span><span style="font-style:italic;color:#ffb86c;">offset</span><span>)
+</span></td></tr><tr><td>15</td><td><span style="color:#ffffff;">{
+</span></td></tr><tr><td>16</td><td><span>    NRF_P0_S</span><span style="color:#ff79c6;">-&gt;</span><span>OUTCLR </span><span style="color:#ff79c6;">|= </span><span style="color:#bd93f9;">1</span><span style="color:#ff79c6;">&lt;&lt;</span><span>(offset</span><span style="color:#ff79c6;">+</span><span style="color:#bd93f9;">2</span><span>);
+</span></td></tr><tr><td>17</td><td><span style="color:#ffffff;">}
+</span></td></tr></tbody></table></code></pre>
+<h4 id="the-linker-script">The Linker Script<a class="zola-anchor" href="#the-linker-script" aria-label="Anchor link for: the-linker-script">🔗</a></h4>
+<p>The NSE functions need to be implemented on the secure side, but also linked with the non-secure side.
+For this they get their very own memory region: The <strong>non-secure-callable (NSC)</strong> region is placed at the very end of the secure flash region and needs to be added to the secure linker file.
+The excerpt below shows that the secure flash region starts at address 0x0 and is 64KB large.
+The NSC region has a size of 32 Bytes (which is the minimal possible size) and is placed at the end of the 64K.</p>
+<pre data-linenos style="background-color:#282a36;color:#f8f8f2;"><code><table><tbody><tr><td>1</td><td><span>_flash_start = 0x0;
+</span></td></tr><tr><td>2</td><td><span>_flash_len = 64K;
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span>_flash_nsc_len = 32;
+</span></td></tr><tr><td>5</td><td><span>_flash_nsc_start = _flash_len - _flash_nsc_len;
+</span></td></tr><tr><td>6</td><td><span>
+</span></td></tr><tr><td>7</td><td><span>_ram_start = 0x20000000;
+</span></td></tr><tr><td>8</td><td><span>_ram_len = 0x10000;
+</span></td></tr><tr><td>9</td><td><span>
+</span></td></tr><tr><td>10</td><td><span>MEMORY
+</span></td></tr><tr><td>11</td><td><span>{
+</span></td></tr><tr><td>12</td><td><span>  FLASH (rx) : ORIGIN = _flash_start, LENGTH = _flash_len
+</span></td></tr><tr><td>13</td><td><span>  FLASH_NSC (rx) : ORIGIN = _flash_nsc_start, LENGTH = _flash_nsc_len
+</span></td></tr><tr><td>14</td><td><span>  RAM (rwx) : ORIGIN = _ram_start, LENGTH = _ram_len
+</span></td></tr><tr><td>15</td><td><span>}
+</span></td></tr></tbody></table></code></pre>
+<p><img src="https://lenas-fieldnotes.eu/minimal-tz/flash.jpg" alt="diagram: three boxes symbolizing three different flash regions. at the top (address 0x0) there's the secure region, in the middle there's the non-secure callable region, at the bottom there's the non-secure region" title="Diagram showing the three flash regions" /></p>
+<p>Next we need to declare a memory section called <code>.gnu.stubs</code>, which the linker is going to place the NSC functions in.
+We can easily do this at the bottom of our linker script.</p>
+<pre style="background-color:#282a36;color:#f8f8f2;"><code><span>SECTIONS
+</span><span>{
+</span><span>  .gnu.sgstubs : ALIGN (32)
+</span><span>  {
+</span><span>      . = ALIGN(32);
+</span><span>      *(.gnu.sgstubs*)
+</span><span>      . = ALIGN(32);
+</span><span>  } &gt; FLASH_NSC
+</span><span>}
+</span></code></pre>
+<h4 id="configuring-memory-regions">Configuring Memory Regions<a class="zola-anchor" href="#configuring-memory-regions" aria-label="Anchor link for: configuring-memory-regions">🔗</a></h4>
+<p>When running a secure and non-secure image together, the secure image needs to configure memory regions at runtime.
+In our application we just do this in the secure main function.
+The example below shows the part of the function where the NSC region is configured (flash and RAM configurations can be viewed in the code repository).</p>
+<pre data-linenos data-lang="c" style="background-color:#282a36;color:#f8f8f2;" class="language-c "><code class="language-c" data-lang="c"><table><tbody><tr><td>1</td><td><span>    </span><span style="font-style:italic;color:#8be9fd;">int</span><span> flash_nsc_id </span><span style="color:#ff79c6;">= </span><span style="color:#bd93f9;">0</span><span>;
+</span></td></tr><tr><td>2</td><td><span>    </span><span style="font-style:italic;color:#8be9fd;">int</span><span> flash_region </span><span style="color:#ff79c6;">= </span><span style="color:#bd93f9;">1</span><span>;
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span>    NRF_SPU_S</span><span style="color:#ff79c6;">-&gt;</span><span>FLASHNSC[flash_nsc_id]</span><span style="color:#ff79c6;">.</span><span style="color:#ffffff;">REGION </span><span style="color:#ff79c6;">=</span><span> flash_region;
+</span></td></tr><tr><td>5</td><td><span>    NRF_SPU_S</span><span style="color:#ff79c6;">-&gt;</span><span>FLASHNSC[flash_nsc_id]</span><span style="color:#ff79c6;">.</span><span style="color:#ffffff;">SIZE </span><span style="color:#ff79c6;">=</span><span> NRF_SPU_NSC_SIZE_32B;
+</span></td></tr></tbody></table></code></pre>
+<p>As explained before, the NSC region is located at the end of the secure flash.
+We need to define the flash region it is going to be placed in and pass the size of the NSC region.
+This needs to be consistent with what we wrote in the linker file.</p>
+<p>We could have two NSC regions, so <code>flash_nsc_id</code> can be either 0 or 1.
+Since we only have one NSC region, our ID is 0, of course.</p>
+<p>Flash on the nRF9160 is separated into 32 regions which have a size of 32 Kilobyte each.
+We configured the first 64KB as secure (regions 0 and 1), so we're placing the NSC region at the end of flash region 1.
+Since we only have three small functions, we can use the minimum NSC size, which is 32 Byte (<code>NRF_SPU_NSC_SIZE_32B</code> is defined in <code>nrf_spu.h</code>, which is part of the NRFX library included in this project).</p>
+<h3 id="the-non-secure-side">The Non-Secure Side<a class="zola-anchor" href="#the-non-secure-side" aria-label="Anchor link for: the-non-secure-side">🔗</a></h3>
+<p>The non-secure side is quite easy.
+It should not be aware of the secure image and &quot;think&quot; that it's the only application running on the system, so we can implement it like any other C-program.
+There are only two things to consider:</p>
+<ol>
+<li>The NSE functions need to be declared somewhere to make them available to our code (I added the <code>ns_entry.h</code> file).</li>
+<li>The non-secure linker script needs to define flash and RAM starting addresses after the secure flash and RAM regions.</li>
+</ol>
+<h3 id="building-and-linking">Building and Linking<a class="zola-anchor" href="#building-and-linking" aria-label="Anchor link for: building-and-linking">🔗</a></h3>
+<p>When building the secure image, we need to add the compiler flag <code>-mcmse</code>.
+The compiler will now automatically build two parts of the NSE functions.
+The actual function body will be placed in the <code>.text</code> section of secure flash.
+The <code>.gnu.sgstubs</code> section we declared above will contain a so-called secure gateway (SG) instruction, which will trigger the transition to the secure state and from there jump into the actual secure code.</p>
+<p>Next we need to add <code>--cmse-implib</code> and <code>--out-implib=nsclib.o</code> to the secure linker flags.
+This will generate an object file that can be linked with the non-secure binary to make the NSE functions available.</p>
+<p>After this it is possible to merge the images and flash them to the board.</p>
+<h2 id="sources">Sources<a class="zola-anchor" href="#sources" aria-label="Anchor link for: sources">🔗</a></h2>
+<ul>
+<li><a href="https://devzone.nordicsemi.com/f/nordic-q-a/92877/bare-metal-programming-on-the-nrf9160">Bare-metal Blinky example</a></li>
+<li><a href="https://devzone.nordicsemi.com/f/nordic-q-a/96093/nrf9160-porting-the-modem-library-to-work-with-bare-metal-application">Bare-metal example with bootloader</a></li>
+<li><a href="https://developer.arm.com/documentation/ddi0553/latest/">Arm®v8-M Architecture Reference Manual</a></li>
+<li><a href="https://infocenter.nordicsemi.com/pdf/nRF9160_PS_v1.0.pdf">nRF9160 Reference Manual</a></li>
+<li><a href="https://m10.io/blog/highway-to-the-trustzone">TrustZone-M with Rust</a></li>
+<li><a href="https://microchip-mplab-harmony.github.io/csp_apps_sam_l10_l11/apps/trustZone/trustZone_basic/readme.html">Microchip TrustZone-M example for SAML11</a></li>
+</ul>
+
+      
+    </div><!--./card-body-->
+
+    <div class="card-footer">
+      <div class="columns">
+        <div class="column col-9 col-sm-7">
+          <div class="taxonomies text-left">
+            
+
+    <a class="label label-rounded label-secondary p-category" href="https://lenas-fieldnotes.eu/categories/programming/">programming</a>
+            
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/arm/">#arm</a>
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/trustzone-m/">#trustzone-m</a>
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/tz-m/">#tz-m</a>
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/nordic/">#nordic</a>
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/nrf9160/">#nrf9160</a>
+    <a class="label label-rounded tag" href="https://lenas-fieldnotes.eu/tags/learning/">#learning</a>
+    
+            
+        
+          </div>
+        </div><!--./col-6-->
+        
+        </div><!--./columns-->
+    </div><!--./card-footer-->
+</div><!--./card-->
+</div>
+              <div id="sidebar" class="column col-4 col-md-12">
+                <div class="sidebar-content">
+                  
+                  
+<div class="sidebar-widget">
+  <div class="tile">
+    <div class="tile-icon">
+      <figure class="avatar avatar-xl">
+        <img src="https://lenas-fieldnotes.eu/img/portrait_cropped.jpg" alt="author avatar image">
+      </figure>
+    </div>
+    <div class="tile-content">
+      <p class="tile-title" style="font-weight: 600;">Lena Boeckmann</p>
+      <p class="tile-subtitle">I am Lena (she&#x2F;her) from Hamburg, Germany and I am a computer science student at the University of Applied Sciences. Here I post my publications, CV and write about what I learn.</p>
+    </div>
+</div><!--./tile-->
+</div>
+
+                  
+                  
+<div class="sidebar-widget">
+<div class="tweets-by-wrapper">
+<script type="module" src="https://unpkg.com/mastodon-widget"></script>
+<h5>Mastodon</h5>
+<mastodon-widget account="@einhornhool@hal9.ooo" limit="5"></mastodon-widget>
+</div>
+</div><!-- end twitter widget -->
+
+                  
+
+                  </div><!--./sidebar-content-->
+              </div>
+            </div>
+            
+          </section>
+        </section></section>
+<section class="container grid-lg">
+<ul class="pagination paginator">
+  
+  
+</ul>
+</section>
+</div><!-- ./page-wrapper -->
+
+    
+<div class="mobile-container">
+        <div class="overlay" id="overlay">
+            <div style="padding: 1rem;">
+              
+<a class="site-logo" href="https:&#x2F;&#x2F;lenas-fieldnotes.eu&#x2F;">
+  
+  <div class="col-mx-auto">
+    <figure style="margin: 8px">
+      <img class="img-responsive"
+           style="max-height: 45px"
+           alt="frontmatter image"
+           src="https://lenas-fieldnotes.eu/./img/temp-logo.png">
+    </figure>
+  </div>
+  
+</a>
+
+            </div>
+            <nav class="overlay-menu">
+              
+
+<ul class="tree treemenu treemenu-root"><li class="tree-empty">
+      <span class="toggler"></span>
+      <a href="https://lenas-fieldnotes.eu/tags">tags</a>
+    </li><li class="tree-empty">
+      <span class="toggler"></span>
+      <a href="https://lenas-fieldnotes.eu/categories">categories</a>
+    </li><li class="tree-empty">
+      <span class="toggler"></span>
+      <a href="https://lenas-fieldnotes.eu/publications">publications</a>
+    </li><li class="tree-empty">
+      <span class="toggler"></span>
+      <a href="https://lenas-fieldnotes.eu/resume">resume</a>
+    </li></ul>
+
+
+              </nav>
+        </div>
+    </div>
+
+<script type="text/javascript">
+  var overlay = document.getElementById('overlay');
+  var toggle = document.getElementById('toggle');
+
+  function openOverlay(){
+      // Open overlay
+      if (overlay.classList.contains("open")) {
+          overlay.classList.remove("open");
+      }
+      else {
+          overlay.classList.add("open");
+      }
+
+      // Button transition
+      if (toggle.classList.contains("active")) {
+          toggle.classList.remove("active");
+      }
+      else {
+          toggle.classList.add("active");
+      }
+    }
+</script>
+
+<section id="footer" class="bg-gray">
+  <div class="container grid-lg">
+    
+
+<div class="container grid-sm" style="margin-bottom: 1rem;">
+  <div class="btn-group btn-group-block">
+    
+    <a class="btn" href="https:&#x2F;&#x2F;github.com&#x2F;Einhornhool"><span>Github</span></a>
+    
+    
+    <a class="btn" href="http:&#x2F;&#x2F;inet.haw-hamburg.de&#x2F;publications&#x2F;LenaBoeckmann.html"><span>INET Research</span></a>
+    
+    
+    <a class="btn" href="https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;lena-boeckmann-2a4a5425a&#x2F;"><span>LinkedIn</span></a>
+    
+    </div><!-- ./btn-group-block -->
+</div>
+
+
+    <div class="columns">
+      
+      <div class="column col-6 col-lg-12 col-mx-auto" style="text-align: center;">
+        This is a footer.
+      </div>
+      
+      <div class="column col-6 col-lg-12 col-mx-auto" style="text-align: center;">
+        Made by <a href="https://github.com/gicrisf/">gicrisf</a> -
+        <strong>Zhuia</strong>&nbsp;<a href="https://github.com/gicrisf/zhuia">source code</a>
+        is licensed under <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>.
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
